@@ -1,0 +1,24 @@
+{
+  "name": "doc_to_pdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "fs": "^0.0.1-security",
+    "mammoth": "^1.8.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.7",
+    "path": "^0.12.7",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.15.1",
+    "qpdf": "^0.1.0-prealpha.1"
+  }
+}

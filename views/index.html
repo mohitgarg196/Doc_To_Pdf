@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/views/Document logo.ai" sizes="16x16" />
+  <title>DOCX to PDF Converter</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #007bff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    input[type="file"],
+    input[type="password"] {
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    .file-metadata {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    </style>
+</head>
+<body>
+  <h1>DOCX to PDF Converter</h1>
+  <form action="/convert" method="POST" enctype="multipart/form-data">
+    <label for="docxFile">Upload a DOCX File:</label><br>
+    <input type="file" id="docxFile" name="docxFile" accept=".docx" required><br><br>
+    <label for="password">Set a Password for the PDF:</label>
+    <input type="password" id="password" name="password" placeholder="Enter password">
+    <button type="submit">Convert and Protect PDF</button>
+  </form>
+  <div class="file-metadata" id="fileMetadata"></div>
+
+  <script>
+    const fileInput = document.getElementById('docxFile');
+    const fileMetadataDiv = document.getElementById('fileMetadata');
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        const metadata = `
+          <p><strong>File Name:</strong> ${file.name}</p>
+          <p><strong>File Size:</strong> ${(file.size / 1024).toFixed(2)} KB</p>
+          <p><strong>File Type:</strong> ${file.type || 'Unknown'}</p>
+          <p><strong>Last Modified:</strong> ${new Date(file.lastModified).toLocaleString()}</p>
+        `;
+        fileMetadataDiv.innerHTML = metadata;
+      } else {
+        fileMetadataDiv.innerHTML = '';
+      }
+    });
+    </script>
+</body>
+</html>
