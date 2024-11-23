@@ -21,7 +21,8 @@ if (!fs.existsSync(outputDir)) {
 }
 
 app.use("/files", express.static(outputDir));
-app.use(express.static(path.join(__dirname, "views")));
+// Serve static files from the "views" directory
+app.use(express.static(path.join(__dirname, 'views')));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views/index.html"));
